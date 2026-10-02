@@ -1,0 +1,23 @@
+# Acceleration limits for time parameterization (URDF has none).
+# Arm values follow ur_moveit_config.
+joint_limits:
+  left_shoulder_pan_joint: { has_acceleration_limits: true, max_acceleration: 5.0 }
+  left_shoulder_lift_joint: { has_acceleration_limits: true, max_acceleration: 5.0 }
+  left_elbow_joint: { has_acceleration_limits: true, max_acceleration: 5.0 }
+  left_wrist_1_joint: { has_acceleration_limits: true, max_acceleration: 5.0 }
+  left_wrist_2_joint: { has_acceleration_limits: true, max_acceleration: 5.0 }
+  left_wrist_3_joint: { has_acceleration_limits: true, max_acceleration: 5.0 }
+  left_gripper_left_finger_joint: { has_acceleration_limits: true, max_acceleration: 1.0 }
+  left_gripper_right_finger_joint: { has_acceleration_limits: true, max_acceleration: 1.0 }
+  right_shoulder_pan_joint: { has_acceleration_limits: true, max_acceleration: 5.0 }
+  right_shoulder_lift_joint: { has_acceleration_limits: true, max_acceleration: 5.0 }
+  right_elbow_joint: { has_acceleration_limits: true, max_acceleration: 5.0 }
+  right_wrist_1_joint: { has_acceleration_limits: true, max_acceleration: 5.0 }
+  right_wrist_2_joint: { has_acceleration_limits: true, max_acceleration: 5.0 }
+  right_wrist_3_joint: { has_acceleration_limits: true, max_acceleration: 5.0 }
+  right_gripper_left_finger_joint: { has_acceleration_limits: true, max_acceleration: 1.0 }
+  right_gripper_right_finger_joint: { has_acceleration_limits: true, max_acceleration: 1.0 }
+  left_2fg7_finger_stroke: { has_acceleration_limits: true, max_acceleration: 1.0 }
+  left_2fg7_left_finger_base_joint: { has_acceleration_limits: true, max_acceleration: 1.0 }
+  right_2fg7_finger_stroke: { has_acceleration_limits: true, max_acceleration: 1.0 }
+  right_2fg7_left_finger_base_joint: { has_acceleration_limits: true, max_acceleration: 1.0 }

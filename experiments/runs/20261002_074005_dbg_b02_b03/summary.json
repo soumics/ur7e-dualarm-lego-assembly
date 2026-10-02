@@ -1,0 +1,26 @@
+{
+  "structure": {
+    "name": "house_door",
+    "bricks": 18,
+    "levels": 3,
+    "parts": {
+      "2x2_red": 1,
+      "2x2_white": 1,
+      "2x2_yellow": 1,
+      "2x4_red": 5,
+      "2x4_white": 5,
+      "2x4_yellow": 5
+    }
+  },
+  "planned_makespan_s": {
+    "greedy": 266.0,
+    "single_arm": 504.0,
+    "cpsat": 266.0
+  },
+  "planned_solver": "greedy",
+  "actual_makespan_sim_s": 44.895000000000095,
+  "tasks_ok": 2,
+  "tasks_failed": [],
+  "bricks_correct": 2,
+  "bricks_total": 2
+}

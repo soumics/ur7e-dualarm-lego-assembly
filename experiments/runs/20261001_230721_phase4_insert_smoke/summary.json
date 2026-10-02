@@ -1,0 +1,18 @@
+{
+  "trials": 3,
+  "seated": 0,
+  "successes": 3,
+  "success_rate": 1.0,
+  "scored_against_ground_truth": 3,
+  "failures": {},
+  "xy_error_mm": {
+    "mean": 0.07438761025364403,
+    "max": 0.07502666192760257,
+    "stdev": 0.0009037555443694077
+  },
+  "abs_yaw_error_deg": {
+    "mean": 0.0023300283668653476,
+    "max": 0.006760901982543714
+  },
+  "wall_time_s_mean": 62.637629906336464
+}

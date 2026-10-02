@@ -1,0 +1,1 @@
+{"success": false, "status": "preplace_plan_failed", "grasp_opening_mm": 15.7891, "lift_dz_mm": 99.9925, "start_x": 0.05, "start_y": 3.81048e-22, "start_yaw_deg": 1.71745e-19, "trial": 0, "cmd_start_x": 0.05, "cmd_start_y": 0.0, "cmd_start_yaw_deg": 0.0, "wall_time_s": 21.391465187072754}

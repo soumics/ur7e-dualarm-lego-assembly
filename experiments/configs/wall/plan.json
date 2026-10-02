@@ -1,0 +1,279 @@
+{
+  "structure": {
+    "name": "wall",
+    "bricks": 8,
+    "levels": 3,
+    "parts": {
+      "2x4_red": 5,
+      "2x4_white": 3
+    }
+  },
+  "durations_s": {
+    "pick": 14.0,
+    "place": 14.0
+  },
+  "precedence_edges": 8,
+  "solver": "greedy",
+  "makespan_s": {
+    "greedy": 126.0,
+    "single_arm": 224.0,
+    "cpsat": 126.0
+  },
+  "cpsat_status": "OPTIMAL",
+  "tasks": [
+    {
+      "brick": "b00",
+      "type": "2x4",
+      "colour": "red",
+      "level": 0,
+      "arm": "left",
+      "model": "lego_2x4_red_0",
+      "grasp": "width",
+      "grasp_yaw_offset_deg": 0,
+      "gripper_gap_m": 0.0198,
+      "grip_shift_world_m": [
+        0.0,
+        0.0
+      ],
+      "after": [],
+      "planned_place_start_s": 14.0,
+      "target_world": {
+        "x": -0.032,
+        "y": 0.0,
+        "z_bottom": 0.7532,
+        "yaw_rad": 0.0
+      },
+      "support": {
+        "model": "baseplate_center",
+        "link": "plate"
+      }
+    },
+    {
+      "brick": "b01",
+      "type": "2x4",
+      "colour": "white",
+      "level": 0,
+      "arm": "right",
+      "model": "lego_2x4_white_0",
+      "grasp": "width",
+      "grasp_yaw_offset_deg": 0,
+      "gripper_gap_m": 0.0198,
+      "grip_shift_world_m": [
+        0.0,
+        0.0
+      ],
+      "after": [],
+      "planned_place_start_s": 28.0,
+      "target_world": {
+        "x": 0.0,
+        "y": 0.0,
+        "z_bottom": 0.7532,
+        "yaw_rad": 0.0
+      },
+      "support": {
+        "model": "baseplate_center",
+        "link": "plate"
+      }
+    },
+    {
+      "brick": "b02",
+      "type": "2x4",
+      "colour": "red",
+      "level": 0,
+      "arm": "left",
+      "model": "lego_2x4_red_2",
+      "grasp": "width",
+      "grasp_yaw_offset_deg": 0,
+      "gripper_gap_m": 0.0198,
+      "grip_shift_world_m": [
+        0.0,
+        0.0
+      ],
+      "after": [],
+      "planned_place_start_s": 42.0,
+      "target_world": {
+        "x": 0.032,
+        "y": 0.0,
+        "z_bottom": 0.7532,
+        "yaw_rad": 0.0
+      },
+      "support": {
+        "model": "baseplate_center",
+        "link": "plate"
+      }
+    },
+    {
+      "brick": "b03",
+      "type": "2x4",
+      "colour": "white",
+      "level": 1,
+      "arm": "right",
+      "model": "lego_2x4_white_2",
+      "grasp": "width",
+      "grasp_yaw_offset_deg": 0,
+      "gripper_gap_m": 0.0198,
+      "grip_shift_world_m": [
+        0.0,
+        0.0
+      ],
+      "after": [
+        "b00",
+        "b01"
+      ],
+      "planned_place_start_s": 56.0,
+      "target_world": {
+        "x": -0.016,
+        "y": 0.0,
+        "z_bottom": 0.7628,
+        "yaw_rad": 0.0
+      },
+      "place_on": {
+        "brick": "b00",
+        "model": "lego_2x4_red_0",
+        "offset_studs": [
+          2.0,
+          0.0
+        ],
+        "yaw_offset_deg": 0
+      }
+    },
+    {
+      "brick": "b04",
+      "type": "2x4",
+      "colour": "red",
+      "level": 1,
+      "arm": "left",
+      "model": "lego_2x4_red_4",
+      "grasp": "width",
+      "grasp_yaw_offset_deg": 0,
+      "gripper_gap_m": 0.0198,
+      "grip_shift_world_m": [
+        0.0,
+        0.0
+      ],
+      "after": [
+        "b01",
+        "b02"
+      ],
+      "planned_place_start_s": 70.0,
+      "target_world": {
+        "x": 0.016,
+        "y": 0.0,
+        "z_bottom": 0.7628,
+        "yaw_rad": 0.0
+      },
+      "place_on": {
+        "brick": "b01",
+        "model": "lego_2x4_white_0",
+        "offset_studs": [
+          2.0,
+          0.0
+        ],
+        "yaw_offset_deg": 0
+      }
+    },
+    {
+      "brick": "b05",
+      "type": "2x4",
+      "colour": "red",
+      "level": 2,
+      "arm": "right",
+      "model": "lego_2x4_red_1",
+      "grasp": "width",
+      "grasp_yaw_offset_deg": 0,
+      "gripper_gap_m": 0.0198,
+      "grip_shift_world_m": [
+        0.0,
+        0.0
+      ],
+      "after": [
+        "b03"
+      ],
+      "planned_place_start_s": 84.0,
+      "target_world": {
+        "x": -0.032,
+        "y": 0.0,
+        "z_bottom": 0.7724,
+        "yaw_rad": 0.0
+      },
+      "place_on": {
+        "brick": "b03",
+        "model": "lego_2x4_white_2",
+        "offset_studs": [
+          -2.0,
+          0.0
+        ],
+        "yaw_offset_deg": 0
+      }
+    },
+    {
+      "brick": "b06",
+      "type": "2x4",
+      "colour": "white",
+      "level": 2,
+      "arm": "left",
+      "model": "lego_2x4_white_1",
+      "grasp": "width",
+      "grasp_yaw_offset_deg": 0,
+      "gripper_gap_m": 0.0198,
+      "grip_shift_world_m": [
+        0.0,
+        0.0
+      ],
+      "after": [
+        "b03",
+        "b04"
+      ],
+      "planned_place_start_s": 98.0,
+      "target_world": {
+        "x": 0.0,
+        "y": 0.0,
+        "z_bottom": 0.7724,
+        "yaw_rad": 0.0
+      },
+      "place_on": {
+        "brick": "b03",
+        "model": "lego_2x4_white_2",
+        "offset_studs": [
+          2.0,
+          0.0
+        ],
+        "yaw_offset_deg": 0
+      }
+    },
+    {
+      "brick": "b07",
+      "type": "2x4",
+      "colour": "red",
+      "level": 2,
+      "arm": "right",
+      "model": "lego_2x4_red_3",
+      "grasp": "width",
+      "grasp_yaw_offset_deg": 0,
+      "gripper_gap_m": 0.0198,
+      "grip_shift_world_m": [
+        0.0,
+        0.0
+      ],
+      "after": [
+        "b04"
+      ],
+      "planned_place_start_s": 112.0,
+      "target_world": {
+        "x": 0.032,
+        "y": 0.0,
+        "z_bottom": 0.7724,
+        "yaw_rad": 0.0
+      },
+      "place_on": {
+        "brick": "b04",
+        "model": "lego_2x4_red_4",
+        "offset_studs": [
+          2.0,
+          0.0
+        ],
+        "yaw_offset_deg": 0
+      }
+    }
+  ]
+}

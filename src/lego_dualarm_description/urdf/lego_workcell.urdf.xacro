@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<!--
+  Top-level description: table + two UR arms (any ur_description model) facing each
+  other along the table's x axis, each with a swappable gripper, plus the overhead camera.
+
+  Left arm  (prefix left_):  base at (left_x, 0),  facing +x; works the x < 0 half.
+  Right arm (prefix right_): base at (right_x, 0), facing -x; works the x > 0 half.
+
+  Args:
+    ur_type        any model supported by ur_description (default ur7e), both arms
+    dual_arm       false: left arm only
+    gripper        onrobot_2fg7 (lab gripper, inward fingertips) | parallel (generic) | none
+    camera         true: overhead RealSense D435 RGB-D camera on a post-and-boom mount
+    sim_gz         true: gz_ros2_control hardware + Gazebo plugin; false: mock hardware
+    simulation_controllers  controllers yaml passed to gz_ros2_control
+-->
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="lego_workcell">
+
+  <xacro:arg name="ur_type" default="ur7e"/>
+  <xacro:arg name="dual_arm" default="true"/>
+  <xacro:arg name="gripper" default="parallel"/>
+  <!-- OnRobot 2FG7 configuration; declared before its macro is included so these defaults win -->
+  <xacro:arg name="fingertip_orientation" default="inwards"/>
+  <xacro:arg name="finger_effort" default="20"/>
+  <xacro:arg name="sim_gz" default="true"/>
+  <xacro:arg name="simulation_controllers" default=""/>
+  <xacro:arg name="camera" default="true"/>
+  <!-- Lens 0.95 m above the table top, centred over the work area -->
+  <xacro:arg name="camera_x" default="0.0"/>
+  <xacro:arg name="camera_y" default="0.0"/>
+  <xacro:arg name="camera_height" default="1.70"/>
+  <xacro:arg name="camera_post_y" default="-0.55"/>
+
+  <!-- 1.6 m table: with bases at +/-0.65 the two arms' ready-pose grippers stay ~0.3 m apart -->
+  <xacro:arg name="table_length" default="1.6"/>
+  <xacro:arg name="table_width" default="0.8"/>
+  <xacro:arg name="table_height" default="0.75"/>
+  <xacro:arg name="left_x" default="-0.65"/>
+  <xacro:arg name="right_x" default="0.65"/>
+
+  <xacro:property name="ur_type" value="$(arg ur_type)"/>
+  <xacro:property name="gripper" value="$(arg gripper)"/>
+  <xacro:property name="sim_gz" value="$(arg sim_gz)"/>
+  <xacro:property name="table_height" value="$(arg table_height)"/>
+
+  <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro"/>
+  <xacro:include filename="$(find ur_description)/urdf/inc/ur_joint_control.xacro"/>
+  <xacro:include filename="$(find lego_dualarm_description)/urdf/workcell.xacro"/>
+  <xacro:include filename="$(find lego_dualarm_description)/urdf/grippers/parallel_gripper.xacro"/>
+  <xacro:if value="${gripper == 'onrobot_2fg7'}">
+    <xacro:include filename="$(find lego_dualarm_description)/urdf/grippers/onrobot_2fg7.xacro"/>
+  </xacro:if>
+  <xacro:include filename="$(find lego_dualarm_description)/urdf/overhead_camera.xacro"/>
+
+  <!-- One arm: UR + gripper + its own ros2_control hardware component -->
+  <xacro:macro name="workcell_arm" params="prefix x y yaw">
+    <xacro:ur_robot
+      name="${prefix}ur"
+      tf_prefix="${prefix}"
+      parent="table"
+      joint_limits_parameters_file="$(find ur_description)/config/${ur_type}/joint_limits.yaml"
+      kinematics_parameters_file="$(find ur_description)/config/${ur_type}/default_kinematics.yaml"
+      physical_parameters_file="$(find ur_description)/config/${ur_type}/physical_parameters.yaml"
+      visual_parameters_file="$(find ur_description)/config/${ur_type}/visual_parameters.yaml"
+      force_abs_paths="${sim_gz}">
+      <origin xyz="${x} ${y} ${table_height}" rpy="0 0 ${yaw}"/>
+    </xacro:ur_robot>
+
+    <xacro:if value="${gripper == 'parallel'}">
+      <xacro:parallel_gripper prefix="${prefix}" parent="${prefix}tool0">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </xacro:parallel_gripper>
+    </xacro:if>
+    <xacro:if value="${gripper == 'onrobot_2fg7'}">
+      <xacro:onrobot_2fg7_gripper prefix="${prefix}" parent="${prefix}tool0"/>
+    </xacro:if>
+
+    <!-- Starts in the "ready" pose: upper arm vertical, forearm horizontal, tool pointing down -->
+    <ros2_control name="${prefix}system" type="system">
+      <hardware>
+        <xacro:if value="${sim_gz}">
+          <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+        </xacro:if>
+        <xacro:unless value="${sim_gz}">
+          <plugin>mock_components/GenericSystem</plugin>
+          <param name="calculate_dynamics">true</param>
+        </xacro:unless>
+      </hardware>
+      <xacro:ur_joint_control_description tf_prefix="${prefix}"
+        initial_positions="${dict(shoulder_pan_joint=0.0,shoulder_lift_joint=-1.57,elbow_joint=1.57,wrist_1_joint=-1.57,wrist_2_joint=-1.57,wrist_3_joint=0.0)}"/>
+      <xacro:if value="${gripper == 'parallel'}">
+        <xacro:parallel_gripper_ros2_control_joints prefix="${prefix}"/>
+      </xacro:if>
+      <xacro:if value="${gripper == 'onrobot_2fg7'}">
+        <xacro:onrobot_2fg7_ros2_control_joints prefix="${prefix}"/>
+      </xacro:if>
+    </ros2_control>
+  </xacro:macro>
+
+  <link name="world"/>
+
+  <xacro:workcell_table parent="world"
+    length="$(arg table_length)" width="$(arg table_width)" height="${table_height}"/>
+
+  <xacro:if value="$(arg camera)">
+    <xacro:overhead_camera parent="world" name="camera" sim_gz="${sim_gz}"
+      x="$(arg camera_x)" y="$(arg camera_y)" height="$(arg camera_height)" post_y="$(arg camera_post_y)"/>
+  </xacro:if>
+
+  <xacro:workcell_arm prefix="left_" x="$(arg left_x)" y="0" yaw="0"/>
+  <xacro:if value="$(arg dual_arm)">
+    <xacro:workcell_arm prefix="right_" x="$(arg right_x)" y="0" yaw="${pi}"/>
+  </xacro:if>
+
+  <xacro:if value="${sim_gz}">
+    <gazebo>
+      <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+        <parameters>$(arg simulation_controllers)</parameters>
+      </plugin>
+    </gazebo>
+  </xacro:if>
+
+</robot>

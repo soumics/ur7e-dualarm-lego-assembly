@@ -1,0 +1,18 @@
+[
+  {
+    "brick": "b00",
+    "model": "lego_2x4_red_0",
+    "ok": true,
+    "xy_err_mm": 0.0191049731745428,
+    "z_err_mm": 0.048000000000048004,
+    "yaw_err_deg": -0.00022918311804619737
+  },
+  {
+    "brick": "b01",
+    "model": "lego_2x4_yellow_0",
+    "ok": false,
+    "xy_err_mm": 206.92781207464597,
+    "z_err_mm": 313.77,
+    "yaw_err_deg": 0.02521014298575599
+  }
+]

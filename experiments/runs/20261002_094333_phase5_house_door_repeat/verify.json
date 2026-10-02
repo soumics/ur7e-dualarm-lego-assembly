@@ -1,0 +1,146 @@
+[
+  {
+    "brick": "b02",
+    "model": "lego_2x4_red_1",
+    "ok": true,
+    "xy_err_mm": 0.0670074622710042,
+    "z_err_mm": 0.0,
+    "yaw_err_deg": 0.08943871181991712
+  },
+  {
+    "brick": "b04",
+    "model": "lego_2x4_red_0",
+    "ok": true,
+    "xy_err_mm": 0.0049999999999980616,
+    "z_err_mm": 0.0,
+    "yaw_err_deg": 0.01854510859390361
+  },
+  {
+    "brick": "b00",
+    "model": "lego_2x4_red_3",
+    "ok": true,
+    "xy_err_mm": 0.025000000000000716,
+    "z_err_mm": 0.0,
+    "yaw_err_deg": -0.09024085273311062
+  },
+  {
+    "brick": "b03",
+    "model": "lego_2x4_red_2",
+    "ok": true,
+    "xy_err_mm": 0.025019992006394362,
+    "z_err_mm": 0.0,
+    "yaw_err_deg": 0.09522558555074583
+  },
+  {
+    "brick": "b12",
+    "model": "lego_2x2_yellow_0",
+    "ok": true,
+    "xy_err_mm": 0.03405877273185213,
+    "z_err_mm": 0.0,
+    "yaw_err_deg": -0.08325076763251077
+  },
+  {
+    "brick": "b13",
+    "model": "lego_2x4_yellow_0",
+    "ok": true,
+    "xy_err_mm": 0.020000000000000573,
+    "z_err_mm": 0.0,
+    "yaw_err_deg": -0.07240314133619762
+  },
+  {
+    "brick": "b14",
+    "model": "lego_2x4_yellow_1",
+    "ok": true,
+    "xy_err_mm": 0.05824946351684333,
+    "z_err_mm": 0.0,
+    "yaw_err_deg": 0.10620765124892136
+  },
+  {
+    "brick": "b05",
+    "model": "lego_2x4_red_4",
+    "ok": true,
+    "xy_err_mm": 0.013038404810404424,
+    "z_err_mm": 0.0,
+    "yaw_err_deg": 0.05063074512122363
+  },
+  {
+    "brick": "b17",
+    "model": "lego_2x4_yellow_3",
+    "ok": true,
+    "xy_err_mm": 0.071112586790244,
+    "z_err_mm": 0.0,
+    "yaw_err_deg": 0.14003088512996695
+  },
+  {
+    "brick": "b08",
+    "model": "lego_2x4_white_1",
+    "ok": true,
+    "xy_err_mm": 0.02376972864800999,
+    "z_err_mm": 0.0,
+    "yaw_err_deg": 0.16168868978592418
+  },
+  {
+    "brick": "b01",
+    "model": "lego_2x2_red_0",
+    "ok": true,
+    "xy_err_mm": 0.015524174696261247,
+    "z_err_mm": 0.0,
+    "yaw_err_deg": -0.0047357018567624354
+  },
+  {
+    "brick": "b16",
+    "model": "lego_2x4_yellow_2",
+    "ok": true,
+    "xy_err_mm": 0.019209372712300415,
+    "z_err_mm": 0.0,
+    "yaw_err_deg": 0.09532145314142801
+  },
+  {
+    "brick": "b09",
+    "model": "lego_2x4_white_0",
+    "ok": true,
+    "xy_err_mm": 0.04545327270945508,
+    "z_err_mm": 0.0,
+    "yaw_err_deg": 0.12719663051904911
+  },
+  {
+    "brick": "b10",
+    "model": "lego_2x4_white_3",
+    "ok": true,
+    "xy_err_mm": 0.031016124838542814,
+    "z_err_mm": 0.0,
+    "yaw_err_deg": -0.0891709568906971
+  },
+  {
+    "brick": "b06",
+    "model": "lego_2x4_white_2",
+    "ok": true,
+    "xy_err_mm": 0.022803508501983656,
+    "z_err_mm": 0.0,
+    "yaw_err_deg": -0.0865739228442697
+  },
+  {
+    "brick": "b15",
+    "model": "lego_2x4_yellow_4",
+    "ok": true,
+    "xy_err_mm": 0.005000000000000143,
+    "z_err_mm": 0.0,
+    "yaw_err_deg": -0.031875177377608366
+  },
+  {
+    "brick": "b11",
+    "model": "lego_2x4_white_4",
+    "ok": true,
+    "xy_err_mm": 0.0028284271247476043,
+    "z_err_mm": 0.0,
+    "yaw_err_deg": -0.04333433328022357
+  },
+  {
+    "brick": "b07",
+    "model": "lego_2x2_white_0",
+    "ok": true,
+    "xy_err_mm": 0.020518284528684098,
+    "z_err_mm": 0.0,
+    "yaw_err_deg": -0.0010886198107480625
+  }
+]

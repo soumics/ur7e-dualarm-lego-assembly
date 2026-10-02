@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+  OnRobot 2FG7 (the lab's gripper) for the LEGO workcell, using OnRobot's official
+  description (OnRobot/onrobot-ros2, third_party/, unmodified) without its hardware
+  ros2_control block; Gazebo control is added here.
+
+  Configuration chosen from the official collision geometry (Phase 5 analysis):
+  - fingertips mounted INWARDS: pad gap = 2 * finger_stroke - 1 mm, i.e. 0-37 mm.
+    Outward (stock) fingertips grip 33-71 mm and cannot hold a 2x4 brick at all.
+  - pads 34 mm wide x 7 mm thick x 38 mm tall, 121-159 mm from the flange; a brick
+    can only be gripped with >= ~7 mm free on both gripped sides.
+  - finger_effort 20 N (the 2FG7's minimum force setting); LEGO walls are ~1.5 mm.
+  - driven joint <prefix>2fg7_finger_stroke, mimic <prefix>2fg7_left_finger_base_joint.
+
+  Frames: <prefix>gripper_tcp sits 5 mm above the fingertip ends (154 mm from the
+  flange); its y axis is the finger closing axis, as on the generic parallel gripper.
+-->
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:include filename="$(find onrobot_2fg7)/urdf/onrobot_2fg7_macro.xacro"/>
+
+  <xacro:property name="o2fg7_tcp_z" value="0.154"/>
+
+  <xacro:macro name="onrobot_2fg7_gripper" params="prefix parent">
+    <xacro:onrobot_2fg7 parent="${parent}" prefix="${prefix}2fg7_" include_ros2_control="false"/>
+
+    <joint name="${prefix}gripper_tcp_joint" type="fixed">
+      <parent link="${prefix}2fg7_base_link"/>
+      <child link="${prefix}gripper_tcp"/>
+      <!-- Rotated so the TCP y axis is the finger closing axis (2FG7 base x), the same
+           convention as the generic gripper: grasp code aligns TCP y with the brick's short side. -->
+      <origin xyz="0 0 ${o2fg7_tcp_z}" rpy="0 0 ${pi/2}"/>
+    </joint>
+    <link name="${prefix}gripper_tcp"/>
+  </xacro:macro>
+
+  <!-- Joint entries for the arm's <ros2_control> block (stroke q per finger, metres) -->
+  <xacro:macro name="onrobot_2fg7_ros2_control_joints" params="prefix initial_stroke:=0.016">
+    <joint name="${prefix}2fg7_finger_stroke">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">${initial_stroke}</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="${prefix}2fg7_left_finger_base_joint">
+      <state_interface name="position">
+        <param name="initial_value">${initial_stroke}</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+  </xacro:macro>
+
+</robot>

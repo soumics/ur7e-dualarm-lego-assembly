@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>lego_dual_arm_task</name>
+  <version>0.1.0</version>
+  <description>Executes dual-arm LEGO assembly plans: per-arm workers and the shared-zone arbiter.</description>
+  <maintainer email="soumic4it@gmail.com">Soumic Sarkar</maintainer>
+  <license>Proprietary</license>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>lego_msgs</exec_depend>
+  <exec_depend>visualization_msgs</exec_depend>
+  <exec_depend>lego_dualarm_grasping</exec_depend>
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

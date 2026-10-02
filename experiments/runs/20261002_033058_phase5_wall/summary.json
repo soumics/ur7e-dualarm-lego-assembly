@@ -1,0 +1,22 @@
+{
+  "structure": {
+    "name": "wall",
+    "bricks": 8,
+    "levels": 3,
+    "parts": {
+      "2x4_red": 5,
+      "2x4_white": 3
+    }
+  },
+  "planned_makespan_s": {
+    "greedy": 126.0,
+    "single_arm": 224.0,
+    "cpsat": 126.0
+  },
+  "planned_solver": "greedy",
+  "actual_makespan_sim_s": 121.49900000000001,
+  "tasks_ok": 8,
+  "tasks_failed": [],
+  "bricks_correct": 8,
+  "bricks_total": 8
+}

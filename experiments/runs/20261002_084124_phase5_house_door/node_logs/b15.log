@@ -1,0 +1,12 @@
+RESULT {"success": false, "status": "grasp_descend_failed", "start_x": 0.24, "start_y": -0.12, "start_yaw_deg": 1.20951e-17, "t_observe_s": 0.0912228, "t_pregrasp_s": 9.53655, "t_ready_s": 19.3368}
+[ros2run]: Process exited with failure 1
+[INFO] [1790930389.987136659] [planning_scene_interface_109309522627760.moveit.moveit.ros.rdf_loader]: Loaded robot model in 0.007 seconds
+[INFO] [1790930389.987292692] [planning_scene_interface_109309522627760.moveit.moveit.core.robot_model]: Loading robot model 'lego_workcell'...
+[INFO] [1790930389.987314548] [planning_scene_interface_109309522627760.moveit.moveit.core.robot_model]: No root/virtual joint specified in SRDF. Assuming fixed joint
+[WARN] [1790930389.996659086] [planning_scene_interface_109309522627760.moveit.moveit.core.robot_model]: Link left_2fg7_right_finger_base_link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.
+[WARN] [1790930389.996726966] [planning_scene_interface_109309522627760.moveit.moveit.core.robot_model]: Link left_2fg7_left_finger_base_link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.
+[WARN] [1790930390.004545558] [planning_scene_interface_109309522627760.moveit.moveit.core.robot_model]: Link right_2fg7_right_finger_base_link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.
+[WARN] [1790930390.004586006] [planning_scene_interface_109309522627760.moveit.moveit.core.robot_model]: Link right_2fg7_left_finger_base_link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.
+[WARN] [1790930390.011820197] [planning_scene_interface_109309522627760.moveit.moveit.ros.robot_model_loader]: No kinematics plugins defined. Fill and load kinematics.yaml!
+[INFO] [1790930390.023792765] [planning_scene_interface_109309522627760.moveit.moveit.ros.move_group_interface]: Ready to take commands for planning group right_arm.
+[ERROR] [1790930437.262840418] [pick_place_once]: Pick-place failed: grasp_descend_failed

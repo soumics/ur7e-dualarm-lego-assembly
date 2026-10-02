@@ -1,0 +1,2 @@
+{"trial": 0, "bricks": [{"brick": "lego_2x4_red_0", "level": 0, "status": "no_result_line", "xy_error_mm": 190.18166802560125, "bottom_above_expected_mm": -3.1999999999999806, "tilt_deg": 0.0, "seated": false}], "final_all_seated": false, "wall_time_s": 3.6356921195983887}
+{"trial": 1, "bricks": [{"brick": "lego_2x4_red_0", "level": 0, "status": "no_result_line", "xy_error_mm": 208.17674604287575, "bottom_above_expected_mm": -3.1999999999999806, "tilt_deg": 0.0, "seated": false}], "final_all_seated": false, "wall_time_s": 3.66555118560791}

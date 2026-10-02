@@ -1,0 +1,32 @@
+{
+  "rounds": 5,
+  "world": "lego_world",
+  "table_z": 0.75,
+  "timeout": 300.0,
+  "out": "/home/ros/ws/experiments/runs",
+  "tag": "phase3_dual_arm_timing",
+  "arms": {
+    "left": [
+      "lego_2x4_red_0",
+      [
+        -0.25,
+        0.1
+      ],
+      [
+        -0.25,
+        0.3
+      ]
+    ],
+    "right": [
+      "lego_2x4_blue_0",
+      [
+        0.25,
+        -0.1
+      ],
+      [
+        0.25,
+        -0.3
+      ]
+    ]
+  }
+}

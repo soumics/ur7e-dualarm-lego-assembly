@@ -1,0 +1,109 @@
+# Both arms (prefixes left_ / right_) + OnRobot 2FG7 grippers, one controller manager
+# (gz_ros2_control). With dual_arm:=false the right_* controllers are simply not spawned.
+controller_manager:
+  ros__parameters:
+    update_rate: 500  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    left_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    left_gripper_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    right_arm_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    right_gripper_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+left_arm_controller:
+  ros__parameters:
+    joints:
+      - left_shoulder_pan_joint
+      - left_shoulder_lift_joint
+      - left_elbow_joint
+      - left_wrist_1_joint
+      - left_wrist_2_joint
+      - left_wrist_3_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    constraints:
+      stopped_velocity_tolerance: 0.2
+      goal_time: 0.0
+      left_shoulder_pan_joint: { trajectory: 0.2, goal: 0.1 }
+      left_shoulder_lift_joint: { trajectory: 0.2, goal: 0.1 }
+      left_elbow_joint: { trajectory: 0.2, goal: 0.1 }
+      left_wrist_1_joint: { trajectory: 0.2, goal: 0.1 }
+      left_wrist_2_joint: { trajectory: 0.2, goal: 0.1 }
+      left_wrist_3_joint: { trajectory: 0.2, goal: 0.1 }
+
+# Fingers are commanded past the brick width when grasping, so goal position
+# tolerances are left unchecked (0 = disabled); the squeeze force is bounded
+# by the finger joint effort limit in the URDF.
+left_gripper_controller:
+  ros__parameters:
+    joints:
+      - left_2fg7_finger_stroke  # OnRobot 2FG7 driven finger; the left finger mimics it
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    constraints:
+      stopped_velocity_tolerance: 0.05
+      goal_time: 0.0
+
+right_arm_controller:
+  ros__parameters:
+    joints:
+      - right_shoulder_pan_joint
+      - right_shoulder_lift_joint
+      - right_elbow_joint
+      - right_wrist_1_joint
+      - right_wrist_2_joint
+      - right_wrist_3_joint
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    constraints:
+      stopped_velocity_tolerance: 0.2
+      goal_time: 0.0
+      right_shoulder_pan_joint: { trajectory: 0.2, goal: 0.1 }
+      right_shoulder_lift_joint: { trajectory: 0.2, goal: 0.1 }
+      right_elbow_joint: { trajectory: 0.2, goal: 0.1 }
+      right_wrist_1_joint: { trajectory: 0.2, goal: 0.1 }
+      right_wrist_2_joint: { trajectory: 0.2, goal: 0.1 }
+      right_wrist_3_joint: { trajectory: 0.2, goal: 0.1 }
+
+right_gripper_controller:
+  ros__parameters:
+    joints:
+      - right_2fg7_finger_stroke  # OnRobot 2FG7 driven finger; the left finger mimics it
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+    state_publish_rate: 100.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    constraints:
+      stopped_velocity_tolerance: 0.05
+      goal_time: 0.0

@@ -1,0 +1,15 @@
+{
+  "trials": 10,
+  "successes": 10,
+  "success_rate": 1.0,
+  "failures": {},
+  "xy_error_mm": {
+    "mean": 2.375017,
+    "max": 3.25719,
+    "stdev": 0.5461729238995651
+  },
+  "abs_yaw_error_deg": {
+    "mean": 5.7793588e-07,
+    "max": 1.16145e-06
+  }
+}

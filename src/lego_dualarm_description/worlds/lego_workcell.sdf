@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!--
+  Workcell world: ground, lighting, bricks on the table.
+  The table, arms and camera come from the robot description
+  (lego_workcell.urdf.xacro); table top is at z = 0.75.
+-->
+<sdf version="1.9">
+  <world name="lego_world">
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <!-- Locks a held brick to the gripper while carried (Gazebo friction creeps; see
+         lego_gz_plugins/src/grasp_lock.cpp). Commands on /lego/grasp_lock. -->
+    <plugin filename="lego_grasp_lock" name="lego::GraspLock">
+      <topic>/lego/grasp_lock</topic>
+    </plugin>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <scene>
+      <ambient>0.6 0.6 0.6 1</ambient>
+      <background>0.75 0.8 0.85 1</background>
+      <grid>false</grid>
+    </scene>
+
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.9 0.9 0.9 1</diffuse>
+      <specular>0.3 0.3 0.3 1</specular>
+      <direction>-0.4 0.2 -0.9</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry><plane><normal>0 0 1</normal><size>20 20</size></plane></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><plane><normal>0 0 1</normal><size>20 20</size></plane></geometry>
+          <material><ambient>0.5 0.5 0.5 1</ambient><diffuse>0.5 0.5 0.5 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Bricks are named lego_<type>_<color>_<index>; lego_perception relies on it.
+         Models come from scripts/generate_bricks.py (model://lego_brick_<type>_<color>).
+         Left arm (base x = -0.65) works x < 0; right arm (base x = +0.65) works x > 0. -->
+    <include>
+      <name>lego_2x4_red_0</name>
+      <uri>model://lego_brick_2x4_red</uri>
+      <pose>-0.25 0.10 0.75 0 0 0</pose>
+    </include>
+    <include>
+      <name>lego_2x4_blue_0</name>
+      <uri>model://lego_brick_2x4_blue</uri>
+      <pose>0.25 -0.10 0.75 0 0 0</pose>
+    </include>
+    <!-- Second brick per arm, for stacking tests -->
+    <include>
+      <name>lego_2x4_yellow_0</name>
+      <uri>model://lego_brick_2x4_yellow</uri>
+      <pose>-0.32 -0.10 0.75 0 0 0</pose>
+    </include>
+    <include>
+      <name>lego_2x4_green_0</name>
+      <uri>model://lego_brick_2x4_green</uri>
+      <pose>0.32 0.10 0.75 0 0 0</pose>
+    </include>
+    <!-- Static 8x8 baseplates, one per arm, at the place targets. A 2x4 brick at yaw 0
+         centred on a plate is lattice-aligned. Plate top (stud base) is 3.2 mm above the table. -->
+    <include>
+      <name>baseplate_left</name>
+      <uri>model://lego_baseplate_8x8</uri>
+      <pose>-0.25 0.30 0.75 0 0 0</pose>
+    </include>
+    <include>
+      <name>baseplate_right</name>
+      <uri>model://lego_baseplate_8x8</uri>
+      <pose>0.25 -0.30 0.75 0 0 0</pose>
+    </include>
+  </world>
+</sdf>

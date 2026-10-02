@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<!--
+  Generic two-finger parallel-jaw gripper.
+
+  Coupled fingers, like a real parallel gripper: the left finger joint is driven,
+  the right finger joint mimics it (URDF <mimic>; gz_ros2_control servoes it to
+  the left finger's position). q = distance from the gripper centreline to that
+  finger's pad face, so the jaw opening is 2q. The effort limit caps the squeeze
+  force (gz_ros2_control drives position commands through a velocity constraint
+  bounded by it).
+
+  Why coupled (Phase 4 measurement): with two independent force-limited fingers
+  both squeezing at 20 N, the forces cancel at any position, so the brick ends up
+  anywhere between the pads (measured in-hand offsets up to +/-5.9 mm). Coupling
+  forces q_left = q_right, which centres the brick on the TCP.
+
+  The coupling must be stiffer than the drive. gz_ros2_control implements the
+  mimic as a velocity servo on the follower; with equal effort limits both fingers
+  saturate while squeezing and drift apart under load (measured 2.0 / 13.8 mm).
+  So the driven finger's effort limit is the grip force (pg_grip_force) and the
+  follower ("linkage") gets pg_linkage_force, well above it.
+
+  Commanded range is [pg_q_min, pg_q_max]. The hard joint limits sit outside
+  it on purpose: in Gazebo/DART a velocity-driven prismatic joint that is
+  driven exactly onto its limit gets stuck there permanently (seen in Phase 1
+  testing), so commands must never reach the hard limits.
+
+  Frames:
+    ${prefix}gripper_base  - mounted on the arm flange/tool0, +z points out of the tool
+    ${prefix}gripper_tcp   - tool centre point between the finger pads; grasp target frame
+-->
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:property name="pg_base_x" value="0.06"/>
+  <xacro:property name="pg_base_y" value="0.10"/>
+  <xacro:property name="pg_base_z" value="0.05"/>
+  <xacro:property name="pg_finger_x" value="0.02"/>
+  <xacro:property name="pg_finger_y" value="0.01"/>
+  <xacro:property name="pg_finger_z" value="0.05"/>
+  <!-- Commanded range (published for MoveIt / grasping code) -->
+  <xacro:property name="pg_q_min" value="0.002"/>
+  <xacro:property name="pg_q_max" value="0.025"/>
+  <!-- Hard limits, outside the commanded range; pads stay 1 mm apart at the lower limit -->
+  <xacro:property name="pg_q_hard_lower" value="0.0005"/>
+  <xacro:property name="pg_q_hard_upper" value="0.028"/>
+  <!-- Grip force of the driven finger [N] and the force the follower linkage can resist [N] -->
+  <xacro:property name="pg_grip_force" value="10.0"/>
+  <xacro:property name="pg_linkage_force" value="40.0"/>
+  <xacro:property name="pg_finger_velocity" value="0.1"/>
+  <!-- TCP sits 5 mm back from the fingertips so the tips clear the table when grasping a brick near its top -->
+  <xacro:property name="pg_tcp_z" value="${pg_base_z + pg_finger_z - 0.005}"/>
+
+  <xacro:macro name="pg_box_inertial" params="m x y z *origin">
+    <inertial>
+      <xacro:insert_block name="origin"/>
+      <mass value="${m}"/>
+      <inertia ixx="${m*(y*y+z*z)/12}" ixy="0" ixz="0"
+               iyy="${m*(x*x+z*z)/12}" iyz="0"
+               izz="${m*(x*x+y*y)/12}"/>
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="pg_finger" params="prefix side sign effort mimic:=''">
+    <link name="${prefix}gripper_${side}_finger">
+      <visual>
+        <origin xyz="0 ${sign*pg_finger_y/2} ${pg_finger_z/2}"/>
+        <geometry><box size="${pg_finger_x} ${pg_finger_y} ${pg_finger_z}"/></geometry>
+        <material name="pg_pad"><color rgba="0.15 0.15 0.15 1"/></material>
+      </visual>
+      <collision>
+        <origin xyz="0 ${sign*pg_finger_y/2} ${pg_finger_z/2}"/>
+        <geometry><box size="${pg_finger_x} ${pg_finger_y} ${pg_finger_z}"/></geometry>
+      </collision>
+      <xacro:pg_box_inertial m="0.05" x="${pg_finger_x}" y="${pg_finger_y}" z="${pg_finger_z}">
+        <origin xyz="0 ${sign*pg_finger_y/2} ${pg_finger_z/2}"/>
+      </xacro:pg_box_inertial>
+    </link>
+
+    <joint name="${prefix}gripper_${side}_finger_joint" type="prismatic">
+      <parent link="${prefix}gripper_base"/>
+      <child link="${prefix}gripper_${side}_finger"/>
+      <origin xyz="0 0 ${pg_base_z}"/>
+      <axis xyz="0 ${sign} 0"/>
+      <xacro:if value="${mimic != ''}">
+        <mimic joint="${mimic}" multiplier="1.0" offset="0.0"/>
+      </xacro:if>
+      <limit lower="${pg_q_hard_lower}" upper="${pg_q_hard_upper}" effort="${effort}" velocity="${pg_finger_velocity}"/>
+      <dynamics damping="1.0" friction="0.0"/>
+    </joint>
+
+    <!-- High-friction rubber-like pads -->
+    <gazebo reference="${prefix}gripper_${side}_finger">
+      <mu1>1.5</mu1>
+      <mu2>1.5</mu2>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="parallel_gripper" params="prefix parent *origin">
+    <joint name="${prefix}gripper_mount_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child link="${prefix}gripper_base"/>
+      <xacro:insert_block name="origin"/>
+    </joint>
+
+    <link name="${prefix}gripper_base">
+      <visual>
+        <origin xyz="0 0 ${pg_base_z/2}"/>
+        <geometry><box size="${pg_base_x} ${pg_base_y} ${pg_base_z}"/></geometry>
+        <material name="pg_body"><color rgba="0.6 0.6 0.65 1"/></material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 ${pg_base_z/2}"/>
+        <geometry><box size="${pg_base_x} ${pg_base_y} ${pg_base_z}"/></geometry>
+      </collision>
+      <xacro:pg_box_inertial m="0.3" x="${pg_base_x}" y="${pg_base_y}" z="${pg_base_z}">
+        <origin xyz="0 0 ${pg_base_z/2}"/>
+      </xacro:pg_box_inertial>
+    </link>
+
+    <xacro:pg_finger prefix="${prefix}" side="left" sign="1" effort="${pg_grip_force}"/>
+    <xacro:pg_finger prefix="${prefix}" side="right" sign="-1" effort="${pg_linkage_force}"
+      mimic="${prefix}gripper_left_finger_joint"/>
+
+    <joint name="${prefix}gripper_tcp_joint" type="fixed">
+      <parent link="${prefix}gripper_base"/>
+      <child link="${prefix}gripper_tcp"/>
+      <origin xyz="0 0 ${pg_tcp_z}"/>
+    </joint>
+    <link name="${prefix}gripper_tcp"/>
+  </xacro:macro>
+
+  <!-- Joint entries to place inside the robot's <ros2_control> block.
+       Only the left finger is commanded; the right (mimic) finger exposes state only. -->
+  <xacro:macro name="parallel_gripper_ros2_control_joints" params="prefix initial_opening:=0.02">
+    <joint name="${prefix}gripper_left_finger_joint">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">${initial_opening}</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="${prefix}gripper_right_finger_joint">
+      <state_interface name="position">
+        <param name="initial_value">${initial_opening}</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+  </xacro:macro>
+
+</robot>

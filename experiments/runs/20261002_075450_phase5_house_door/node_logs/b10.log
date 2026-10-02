@@ -1,0 +1,12 @@
+RESULT {"success": false, "status": "lift_failed", "dbg_q_left_mm": 8.38924, "dbg_q_right_mm": 8.40229, "grasp_expected_mm": 15.8, "grasp_opening_mm": 15.7915, "q_after_close_mm": 8.38924, "q_after_lock_hold_mm": 10.3634, "start_x": 0.24, "start_y": 0.24, "start_yaw_deg": -2.08658e-17, "t_descend_s": 16.2102, "t_observe_s": 0.0824757, "t_pregrasp_s": 9.23916, "t_ready_s": 8.47701}
+[ros2run]: Process exited with failure 1
+[INFO] [1790927559.120209111] [planning_scene_interface_110087247310048.moveit.moveit.ros.rdf_loader]: Loaded robot model in 0.007 seconds
+[INFO] [1790927559.120364831] [planning_scene_interface_110087247310048.moveit.moveit.core.robot_model]: Loading robot model 'lego_workcell'...
+[INFO] [1790927559.120382142] [planning_scene_interface_110087247310048.moveit.moveit.core.robot_model]: No root/virtual joint specified in SRDF. Assuming fixed joint
+[WARN] [1790927559.129386606] [planning_scene_interface_110087247310048.moveit.moveit.core.robot_model]: Link left_2fg7_right_finger_base_link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.
+[WARN] [1790927559.129448451] [planning_scene_interface_110087247310048.moveit.moveit.core.robot_model]: Link left_2fg7_left_finger_base_link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.
+[WARN] [1790927559.137114691] [planning_scene_interface_110087247310048.moveit.moveit.core.robot_model]: Link right_2fg7_right_finger_base_link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.
+[WARN] [1790927559.137153258] [planning_scene_interface_110087247310048.moveit.moveit.core.robot_model]: Link right_2fg7_left_finger_base_link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.
+[WARN] [1790927559.144442241] [planning_scene_interface_110087247310048.moveit.moveit.ros.robot_model_loader]: No kinematics plugins defined. Fill and load kinematics.yaml!
+[INFO] [1790927559.154768020] [planning_scene_interface_110087247310048.moveit.moveit.ros.move_group_interface]: Ready to take commands for planning group right_arm.
+[ERROR] [1790927628.186449023] [pick_place_once]: Pick-place failed: lift_failed

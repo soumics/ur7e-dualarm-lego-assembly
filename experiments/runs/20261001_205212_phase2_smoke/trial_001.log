@@ -1,0 +1,19 @@
+RESULT {"success": false, "status": "grasp_descend_failed", "start_x": 0.05, "start_y": 1.43954e-19, "start_yaw_deg": -5.33309e-19}
+[ros2run]: Process exited with failure 1
+[INFO] [1790887954.014647690] [planning_scene_interface_96176493798560.moveit.moveit.ros.rdf_loader]: Loaded robot model in 0.041 seconds
+[INFO] [1790887954.014798517] [planning_scene_interface_96176493798560.moveit.moveit.core.robot_model]: Loading robot model 'lego_workcell'...
+[INFO] [1790887954.014848239] [planning_scene_interface_96176493798560.moveit.moveit.core.robot_model]: No root/virtual joint specified in SRDF. Assuming fixed joint
+[WARN] [1790887954.025067663] [planning_scene_interface_96176493798560.moveit.moveit.ros.robot_model_loader]: No kinematics plugins defined. Fill and load kinematics.yaml!
+[INFO] [1790887954.032195809] [planning_scene_interface_96176493798560.moveit.moveit.ros.move_group_interface]: Ready to take commands for planning group left_arm.
+[INFO] [1790887954.032999896] [planning_scene_interface_96176493798560.moveit.moveit.ros.move_group_interface]: Plan and Execute request accepted
+[INFO] [1790887958.367225020] [planning_scene_interface_96176493798560.moveit.moveit.ros.move_group_interface]: Plan and Execute request complete!
+[INFO] [1790887959.769970540] [planning_scene_interface_96176493798560.moveit.moveit.ros.move_group_interface]: Plan and Execute request accepted
+[INFO] [1790887963.802845703] [planning_scene_interface_96176493798560.moveit.moveit.ros.move_group_interface]: Plan and Execute request complete!
+[INFO] [1790887963.803413310] [planning_scene_interface_96176493798560.moveit.moveit.ros.move_group_interface]: MoveGroup action client/server ready
+[INFO] [1790887963.803622763] [planning_scene_interface_96176493798560.moveit.moveit.ros.move_group_interface]: Planning request accepted
+[INFO] [1790887963.833140094] [planning_scene_interface_96176493798560.moveit.moveit.ros.move_group_interface]: Planning request complete!
+[INFO] [1790887963.834188564] [planning_scene_interface_96176493798560.moveit.moveit.ros.move_group_interface]: time taken to generate plan: 0.027043 seconds
+[INFO] [1790887963.834716725] [planning_scene_interface_96176493798560.moveit.moveit.ros.move_group_interface]: Execute request accepted
+[INFO] [1790887966.488124406] [planning_scene_interface_96176493798560.moveit.moveit.ros.move_group_interface]: Execute request success!
+[ERROR] [1790887966.545040469] [pick_place_once]: Cartesian path only 88.0% complete
+[ERROR] [1790887966.545122195] [pick_place_once]: Pick-place failed: grasp_descend_failed

@@ -1,0 +1,6 @@
+# The arm has left the shared build zone after placing task_id (success = brick placed).
+string arm
+string task_id
+bool success
+---
+bool ok

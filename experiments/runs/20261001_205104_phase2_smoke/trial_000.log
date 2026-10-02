@@ -1,0 +1,24 @@
+RESULT {"success": false, "status": "preplace_plan_failed", "grasp_opening_mm": 15.7891, "lift_dz_mm": 99.9925, "start_x": 0.05, "start_y": 3.81048e-22, "start_yaw_deg": 1.71745e-19}
+[ros2run]: Process exited with failure 1
+[INFO] [1790887867.586619730] [planning_scene_interface_95811195581600.moveit.moveit.ros.rdf_loader]: Loaded robot model in 1.318 seconds
+[INFO] [1790887867.586731365] [planning_scene_interface_95811195581600.moveit.moveit.core.robot_model]: Loading robot model 'lego_workcell'...
+[INFO] [1790887867.586746891] [planning_scene_interface_95811195581600.moveit.moveit.core.robot_model]: No root/virtual joint specified in SRDF. Assuming fixed joint
+[WARN] [1790887867.595927523] [planning_scene_interface_95811195581600.moveit.moveit.ros.robot_model_loader]: No kinematics plugins defined. Fill and load kinematics.yaml!
+[INFO] [1790887867.607227774] [planning_scene_interface_95811195581600.moveit.moveit.ros.move_group_interface]: Ready to take commands for planning group left_arm.
+[INFO] [1790887867.608486398] [planning_scene_interface_95811195581600.moveit.moveit.ros.move_group_interface]: Plan and Execute request accepted
+[INFO] [1790887871.641580790] [planning_scene_interface_95811195581600.moveit.moveit.ros.move_group_interface]: Plan and Execute request complete!
+[INFO] [1790887873.043142199] [planning_scene_interface_95811195581600.moveit.moveit.ros.move_group_interface]: MoveGroup action client/server ready
+[INFO] [1790887873.043495534] [planning_scene_interface_95811195581600.moveit.moveit.ros.move_group_interface]: Planning request accepted
+[INFO] [1790887873.064461050] [planning_scene_interface_95811195581600.moveit.moveit.ros.move_group_interface]: Planning request complete!
+[INFO] [1790887873.065465664] [planning_scene_interface_95811195581600.moveit.moveit.ros.move_group_interface]: time taken to generate plan: 0.0160647 seconds
+[INFO] [1790887873.065974130] [planning_scene_interface_95811195581600.moveit.moveit.ros.move_group_interface]: Execute request accepted
+[INFO] [1790887878.419306966] [planning_scene_interface_95811195581600.moveit.moveit.ros.move_group_interface]: Execute request success!
+[INFO] [1790887878.427713635] [planning_scene_interface_95811195581600.moveit.moveit.ros.move_group_interface]: Execute request accepted
+[INFO] [1790887881.130774135] [planning_scene_interface_95811195581600.moveit.moveit.ros.move_group_interface]: Execute request success!
+[INFO] [1790887882.739985798] [planning_scene_interface_95811195581600.moveit.moveit.ros.move_group_interface]: Execute request accepted
+[INFO] [1790887885.442446006] [planning_scene_interface_95811195581600.moveit.moveit.ros.move_group_interface]: Execute request success!
+[INFO] [1790887885.543385259] [planning_scene_interface_95811195581600.moveit.moveit.ros.move_group_interface]: MoveGroup action client/server ready
+[INFO] [1790887885.543704573] [planning_scene_interface_95811195581600.moveit.moveit.ros.move_group_interface]: Planning request accepted
+[INFO] [1790887885.595546023] [planning_scene_interface_95811195581600.moveit.moveit.ros.move_group_interface]: Planning request aborted
+[ERROR] [1790887885.595794324] [planning_scene_interface_95811195581600.moveit.moveit.ros.move_group_interface]: MoveGroupInterface::plan() failed or timeout reached
+[ERROR] [1790887885.595879948] [pick_place_once]: Pick-place failed: preplace_plan_failed

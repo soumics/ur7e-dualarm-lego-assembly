@@ -1,0 +1,13 @@
+{
+  "trials": 3,
+  "seated": 0,
+  "successes": 0,
+  "success_rate": 0.0,
+  "scored_against_ground_truth": 0,
+  "failures": {
+    "grasp_descend_failed": 3
+  },
+  "xy_error_mm": null,
+  "abs_yaw_error_deg": null,
+  "wall_time_s_mean": 17.43040696779887
+}

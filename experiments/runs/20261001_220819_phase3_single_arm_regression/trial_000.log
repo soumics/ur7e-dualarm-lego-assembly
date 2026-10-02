@@ -1,0 +1,6 @@
+RESULT {"success": true, "status": "ok", "duration_s": 30.7339, "grasp_opening_mm": 15.7891, "lift_dz_mm": 99.9894, "perceived_error_xy_mm": 3.76154, "perceived_error_yaw_deg": -2.39391e-06, "start_x": -0.25, "start_y": 0.1, "start_yaw_deg": 7.20303e-19}
+[INFO] [1790892502.334192536] [planning_scene_interface_96005744820576.moveit.moveit.ros.rdf_loader]: Loaded robot model in 0.038 seconds
+[INFO] [1790892502.334302208] [planning_scene_interface_96005744820576.moveit.moveit.core.robot_model]: Loading robot model 'lego_workcell'...
+[INFO] [1790892502.334314149] [planning_scene_interface_96005744820576.moveit.moveit.core.robot_model]: No root/virtual joint specified in SRDF. Assuming fixed joint
+[WARN] [1790892502.342758167] [planning_scene_interface_96005744820576.moveit.moveit.ros.robot_model_loader]: No kinematics plugins defined. Fill and load kinematics.yaml!
+[INFO] [1790892502.349146752] [planning_scene_interface_96005744820576.moveit.moveit.ros.move_group_interface]: Ready to take commands for planning group left_arm.

@@ -1,0 +1,21 @@
+# External sources, pinned to the revisions this project was built and tested with.
+#   vcs import < dependencies.repos      (python3-vcstool)
+# The Universal Robots repositories are used unmodified. Only the OnRobot description
+# packages are built (symlinked from src/); third_party/COLCON_IGNORE hides the rest.
+repositories:
+  src/Universal_Robots_ROS2_Description:
+    type: git
+    url: https://github.com/soumics/Universal_Robots_ROS2_Description.git
+    version: 6b639c2efd9f4f12da858a72cf1a9e40da365ed8
+  src/Universal_Robots_ROS2_Driver:
+    type: git
+    url: https://github.com/soumics/Universal_Robots_ROS2_Driver.git
+    version: 451b6e984d609350b2f04f0579ac2cca473f5d8d
+  src/Universal_Robots_ROS2_GZ_Simulation:
+    type: git
+    url: https://github.com/soumics/Universal_Robots_ROS2_GZ_Simulation.git
+    version: 3600c68c5fd658a2cfc4aff20a0c3bd83a10f1b8
+  third_party/OnRobot_ROS2:
+    type: git
+    url: https://github.com/OnRobot/onrobot-ros2.git
+    version: be8b44b8ff02c3bb671644af6894b16e42479895

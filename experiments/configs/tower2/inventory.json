@@ -1,0 +1,29 @@
+{
+  "target": "/home/user/Desktop/ur7_jazzy_ws/src/lego_assembly_planner/models/tower2.ldr",
+  "baseplate": {
+    "name": "baseplate_center",
+    "link": "plate",
+    "x": 0.0,
+    "y": 0.0,
+    "z_top": 0.7532,
+    "studs": 8
+  },
+  "bricks": [
+    {
+      "name": "lego_2x4_red_0",
+      "type": "2x4",
+      "colour": "red",
+      "arm": "left",
+      "x": -0.32,
+      "y": -0.24
+    },
+    {
+      "name": "lego_2x4_yellow_0",
+      "type": "2x4",
+      "colour": "yellow",
+      "arm": "right",
+      "x": 0.32,
+      "y": 0.24
+    }
+  ]
+}

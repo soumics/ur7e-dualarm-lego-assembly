@@ -1,0 +1,8 @@
+# Ask the zone arbiter (lego_dual_arm_task) for permission to enter the shared build zone
+# and place the brick of task_id. Blocks until granted: the zone is free and every
+# predecessor of the task has been placed.
+string arm
+string task_id
+---
+bool granted
+string reason

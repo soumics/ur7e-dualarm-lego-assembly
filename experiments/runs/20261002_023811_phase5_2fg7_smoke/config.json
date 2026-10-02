@@ -1,0 +1,26 @@
+{
+  "trials": 3,
+  "seed": 0,
+  "world": "lego_world",
+  "arm": "left",
+  "gripper": "onrobot_2fg7",
+  "brick": "lego_2x4_red_0",
+  "start": [
+    -0.25,
+    0.1
+  ],
+  "table_z": 0.75,
+  "place": [
+    -0.25,
+    0.3,
+    0.0
+  ],
+  "place_surface_z": 0.7532,
+  "place_clearance": 0.0022,
+  "xy_noise": 0.0,
+  "yaw_noise": 0.0,
+  "timeout": 180.0,
+  "out": "/home/ros/ws/experiments/runs",
+  "tag": "phase5_2fg7_smoke",
+  "summarize": null
+}

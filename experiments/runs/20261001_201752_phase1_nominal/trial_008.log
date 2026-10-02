@@ -1,0 +1,28 @@
+RESULT {"success": true, "status": "ok", "duration_s": 20.538, "final_x": 0.050067, "final_y": 0.203178, "final_z": 0.749999, "grasp_opening_mm": 15.7891, "lift_dz_mm": 100, "place_error_xy_mm": 3.17871, "place_error_yaw_deg": -3.32279e-07, "start_x": 0.05, "start_y": 5.14398e-20, "start_yaw_deg": -5.97525e-17}
+[INFO] [1790886065.054089123] [planning_scene_interface_107998745547312.moveit.moveit.ros.rdf_loader]: Loaded robot model in 0.038 seconds
+[INFO] [1790886065.054206402] [planning_scene_interface_107998745547312.moveit.moveit.core.robot_model]: Loading robot model 'lego_workcell'...
+[INFO] [1790886065.054222879] [planning_scene_interface_107998745547312.moveit.moveit.core.robot_model]: No root/virtual joint specified in SRDF. Assuming fixed joint
+[WARN] [1790886065.064107502] [planning_scene_interface_107998745547312.moveit.moveit.ros.robot_model_loader]: No kinematics plugins defined. Fill and load kinematics.yaml!
+[INFO] [1790886065.071951804] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Ready to take commands for planning group left_arm.
+[INFO] [1790886066.523626102] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: MoveGroup action client/server ready
+[INFO] [1790886066.524322651] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Planning request accepted
+[INFO] [1790886066.551718001] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Planning request complete!
+[INFO] [1790886066.552505743] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: time taken to generate plan: 0.0251469 seconds
+[INFO] [1790886066.552858998] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Execute request accepted
+[INFO] [1790886069.210338019] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Execute request success!
+[INFO] [1790886069.216716373] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Execute request accepted
+[INFO] [1790886071.919164786] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Execute request success!
+[INFO] [1790886073.526507891] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Execute request accepted
+[INFO] [1790886076.228731949] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Execute request success!
+[INFO] [1790886076.329203279] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: MoveGroup action client/server ready
+[INFO] [1790886076.329561602] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Planning request accepted
+[INFO] [1790886076.356481180] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Planning request complete!
+[INFO] [1790886076.356722309] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: time taken to generate plan: 0.0247679 seconds
+[INFO] [1790886076.357014055] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Execute request accepted
+[INFO] [1790886077.459513309] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Execute request success!
+[INFO] [1790886077.466918397] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Execute request accepted
+[INFO] [1790886079.968403085] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Execute request success!
+[INFO] [1790886081.374421806] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Execute request accepted
+[INFO] [1790886082.276476882] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Execute request success!
+[INFO] [1790886082.277578715] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Plan and Execute request accepted
+[INFO] [1790886084.454701922] [planning_scene_interface_107998745547312.moveit.moveit.ros.move_group_interface]: Plan and Execute request complete!

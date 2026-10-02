@@ -1,0 +1,17 @@
+{
+  "arm": "left",
+  "bricks": [
+    "lego_2x4_red_0",
+    "lego_2x4_yellow_0"
+  ],
+  "trials": 2,
+  "seed": 0,
+  "xy_noise": 0.02,
+  "yaw_noise": 30.0,
+  "world": "lego_world",
+  "table_z": 0.75,
+  "place_clearance": 0.0022,
+  "relative": true,
+  "out": "/home/ros/ws/experiments/runs",
+  "tag": "phase4_stack_release_diag"
+}

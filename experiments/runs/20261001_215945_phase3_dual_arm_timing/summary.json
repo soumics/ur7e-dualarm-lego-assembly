@@ -1,0 +1,17 @@
+{
+  "sequential": {
+    "rounds": 5,
+    "rounds_all_ok": 5,
+    "wall_time_s_mean": 58.399479913711545,
+    "xy_error_mm_mean": 3.4654538321308395,
+    "xy_error_mm_max": 5.662510044141203
+  },
+  "concurrent": {
+    "rounds": 5,
+    "rounds_all_ok": 5,
+    "wall_time_s_mean": 29.115717315673827,
+    "xy_error_mm_mean": 2.180099306860215,
+    "xy_error_mm_max": 5.049571962057744
+  },
+  "speedup": 2.005771634630943
+}

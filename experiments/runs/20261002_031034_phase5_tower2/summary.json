@@ -1,0 +1,24 @@
+{
+  "structure": {
+    "name": "tower2",
+    "bricks": 2,
+    "levels": 2,
+    "parts": {
+      "2x4_red": 1,
+      "2x4_yellow": 1
+    }
+  },
+  "planned_makespan_s": {
+    "greedy": 42.0,
+    "single_arm": 56.0,
+    "cpsat": 42.0
+  },
+  "planned_solver": "greedy",
+  "actual_makespan_sim_s": 49.053000000000004,
+  "tasks_ok": 1,
+  "tasks_failed": [
+    "b01"
+  ],
+  "bricks_correct": 1,
+  "bricks_total": 2
+}

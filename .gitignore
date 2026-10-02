@@ -1,0 +1,24 @@
+# colcon artifacts
+build/
+install/
+log/
+
+# videos and screen recordings stay local (never uploaded)
+video/
+*.mp4
+*.mkv
+*.webm
+*.avi
+
+# Python / crash dumps
+__pycache__/
+*.pyc
+core
+
+# external sources: fetched with `vcs import < dependencies.repos`, not stored here
+src/Universal_Robots_ROS2_Description/
+src/Universal_Robots_ROS2_Driver/
+src/Universal_Robots_ROS2_GZ_Simulation/
+third_party/*
+!third_party/COLCON_IGNORE
+

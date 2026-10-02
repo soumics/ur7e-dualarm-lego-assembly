@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Semantic description of the LEGO workcell: left_ and right_ arms with parallel
+  grippers, plus a both_arms group for coordinated motions.
+  Link/joint names follow lego_dualarm_description/urdf/lego_workcell.urdf.xacro.
+  Collisions between the two arms are never disabled: each arm always plans
+  around the other's current state.
+-->
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="lego_workcell">
+  <xacro:arg name="dual_arm" default="true"/>
+  <xacro:arg name="gripper" default="parallel"/>
+
+  <xacro:macro name="arm_srdf" params="p gripper">
+    <group name="${p}arm">
+      <xacro:if value="${gripper in ('parallel', 'onrobot_2fg7')}">
+        <chain base_link="${p}base_link" tip_link="${p}gripper_tcp"/>
+      </xacro:if>
+      <xacro:unless value="${gripper in ('parallel', 'onrobot_2fg7')}">
+        <chain base_link="${p}base_link" tip_link="${p}tool0"/>
+      </xacro:unless>
+    </group>
+
+    <group_state name="ready" group="${p}arm">
+      <joint name="${p}shoulder_pan_joint" value="0"/>
+      <joint name="${p}shoulder_lift_joint" value="-1.57"/>
+      <joint name="${p}elbow_joint" value="1.57"/>
+      <joint name="${p}wrist_1_joint" value="-1.57"/>
+      <joint name="${p}wrist_2_joint" value="-1.57"/>
+      <joint name="${p}wrist_3_joint" value="0"/>
+    </group_state>
+
+    <!-- Parked out of the overhead camera's view: forearm swung back past the table's rear edge -->
+    <group_state name="observe" group="${p}arm">
+      <joint name="${p}shoulder_pan_joint" value="3.14159"/>
+      <joint name="${p}shoulder_lift_joint" value="-1.57"/>
+      <joint name="${p}elbow_joint" value="1.57"/>
+      <joint name="${p}wrist_1_joint" value="-1.57"/>
+      <joint name="${p}wrist_2_joint" value="-1.57"/>
+      <joint name="${p}wrist_3_joint" value="0"/>
+    </group_state>
+
+    <!-- UR arm self-collision pairs (from ur_moveit_config, prefixed) -->
+    <disable_collisions link1="${p}base_link" link2="${p}base_link_inertia" reason="Adjacent"/>
+    <disable_collisions link1="${p}base_link_inertia" link2="${p}shoulder_link" reason="Adjacent"/>
+    <disable_collisions link1="${p}tool0" link2="${p}wrist_1_link" reason="Never"/>
+    <disable_collisions link1="${p}tool0" link2="${p}wrist_2_link" reason="Never"/>
+    <disable_collisions link1="${p}tool0" link2="${p}wrist_3_link" reason="Adjacent"/>
+    <disable_collisions link1="${p}forearm_link" link2="${p}upper_arm_link" reason="Adjacent"/>
+    <disable_collisions link1="${p}forearm_link" link2="${p}wrist_1_link" reason="Adjacent"/>
+    <disable_collisions link1="${p}shoulder_link" link2="${p}upper_arm_link" reason="Adjacent"/>
+    <disable_collisions link1="${p}wrist_1_link" link2="${p}wrist_2_link" reason="Adjacent"/>
+    <disable_collisions link1="${p}wrist_1_link" link2="${p}wrist_3_link" reason="Never"/>
+    <disable_collisions link1="${p}wrist_2_link" link2="${p}wrist_3_link" reason="Adjacent"/>
+
+    <!-- Arm base sits on the table -->
+    <disable_collisions link1="table" link2="${p}base_link_inertia" reason="Adjacent"/>
+    <disable_collisions link1="table" link2="${p}shoulder_link" reason="Never"/>
+
+    <xacro:if value="${gripper == 'parallel'}">
+      <group name="${p}gripper">
+        <joint name="${p}gripper_left_finger_joint"/>
+        <joint name="${p}gripper_right_finger_joint"/>
+      </group>
+      <!-- Finger values = pad distance from centreline; commanded range [0.002, 0.025].
+           Right finger mimics the left one, so only the left is listed. -->
+      <group_state name="open" group="${p}gripper">
+        <joint name="${p}gripper_left_finger_joint" value="0.02"/>
+      </group_state>
+      <group_state name="closed" group="${p}gripper">
+        <joint name="${p}gripper_left_finger_joint" value="0.002"/>
+      </group_state>
+      <end_effector name="${p}hand" parent_link="${p}gripper_base" group="${p}gripper" parent_group="${p}arm"/>
+
+      <disable_collisions link1="${p}gripper_base" link2="${p}wrist_3_link" reason="Adjacent"/>
+      <disable_collisions link1="${p}gripper_base" link2="${p}wrist_2_link" reason="Never"/>
+      <disable_collisions link1="${p}gripper_base" link2="${p}wrist_1_link" reason="Never"/>
+      <disable_collisions link1="${p}gripper_base" link2="${p}gripper_left_finger" reason="Adjacent"/>
+      <disable_collisions link1="${p}gripper_base" link2="${p}gripper_right_finger" reason="Adjacent"/>
+      <disable_collisions link1="${p}gripper_left_finger" link2="${p}gripper_right_finger" reason="Never"/>
+      <disable_collisions link1="${p}gripper_left_finger" link2="${p}wrist_3_link" reason="Never"/>
+      <disable_collisions link1="${p}gripper_right_finger" link2="${p}wrist_3_link" reason="Never"/>
+      <disable_collisions link1="${p}gripper_left_finger" link2="${p}wrist_2_link" reason="Never"/>
+      <disable_collisions link1="${p}gripper_right_finger" link2="${p}wrist_2_link" reason="Never"/>
+      <disable_collisions link1="${p}gripper_left_finger" link2="${p}wrist_1_link" reason="Never"/>
+      <disable_collisions link1="${p}gripper_right_finger" link2="${p}wrist_1_link" reason="Never"/>
+    </xacro:if>
+
+    <xacro:if value="${gripper == 'onrobot_2fg7'}">
+      <xacro:property name="g" value="${p}2fg7_"/>
+      <group name="${p}gripper">
+        <joint name="${g}finger_stroke"/>
+        <joint name="${g}left_finger_base_joint"/>
+      </group>
+      <!-- Stroke per finger; pad gap = 2 * stroke - 1 mm (inward fingertips) -->
+      <group_state name="open" group="${p}gripper">
+        <joint name="${g}finger_stroke" value="0.016"/>
+      </group_state>
+      <group_state name="closed" group="${p}gripper">
+        <joint name="${g}finger_stroke" value="0.002"/>
+      </group_state>
+      <end_effector name="${p}hand" parent_link="${g}base_link" group="${p}gripper" parent_group="${p}arm"/>
+      <!-- Grip-stroke is a coordinate-only joint of the OnRobot model (no geometry, not simulated) -->
+      <passive_joint name="${g}grip_stroke"/>
+      <disable_collisions link1="${g}base_link" link2="${p}wrist_3_link" reason="Adjacent"/>
+      <disable_collisions link1="${g}base_link" link2="${p}wrist_2_link" reason="Never"/>
+      <disable_collisions link1="${g}base_link" link2="${p}wrist_1_link" reason="Never"/>
+      <xacro:macro name="pg2fg7_finger_pairs" params="f">
+        <disable_collisions link1="${g}base_link" link2="${g}${f}" reason="Adjacent"/>
+        <disable_collisions link1="${g}${f}" link2="${p}wrist_3_link" reason="Never"/>
+        <disable_collisions link1="${g}${f}" link2="${p}wrist_2_link" reason="Never"/>
+        <disable_collisions link1="${g}${f}" link2="${p}wrist_1_link" reason="Never"/>
+      </xacro:macro>
+      <xacro:pg2fg7_finger_pairs f="left_finger_base_link"/>
+      <xacro:pg2fg7_finger_pairs f="right_finger_base_link"/>
+      <xacro:pg2fg7_finger_pairs f="left_fingertip_link"/>
+      <xacro:pg2fg7_finger_pairs f="right_fingertip_link"/>
+      <disable_collisions link1="${g}left_finger_base_link" link2="${g}left_fingertip_link" reason="Adjacent"/>
+      <disable_collisions link1="${g}right_finger_base_link" link2="${g}right_fingertip_link" reason="Adjacent"/>
+      <disable_collisions link1="${g}left_finger_base_link" link2="${g}right_finger_base_link" reason="Never"/>
+      <disable_collisions link1="${g}left_fingertip_link" link2="${g}right_fingertip_link" reason="Never"/>
+      <disable_collisions link1="${g}left_finger_base_link" link2="${g}right_fingertip_link" reason="Never"/>
+      <disable_collisions link1="${g}right_finger_base_link" link2="${g}left_fingertip_link" reason="Never"/>
+    </xacro:if>
+  </xacro:macro>
+
+  <xacro:arm_srdf p="left_" gripper="$(arg gripper)"/>
+  <xacro:if value="$(arg dual_arm)">
+    <xacro:arm_srdf p="right_" gripper="$(arg gripper)"/>
+    <group name="both_arms">
+      <group name="left_arm"/>
+      <group name="right_arm"/>
+    </group>
+    <group_state name="ready" group="both_arms">
+      <joint name="left_shoulder_pan_joint" value="0"/>
+      <joint name="left_shoulder_lift_joint" value="-1.57"/>
+      <joint name="left_elbow_joint" value="1.57"/>
+      <joint name="left_wrist_1_joint" value="-1.57"/>
+      <joint name="left_wrist_2_joint" value="-1.57"/>
+      <joint name="left_wrist_3_joint" value="0"/>
+      <joint name="right_shoulder_pan_joint" value="0"/>
+      <joint name="right_shoulder_lift_joint" value="-1.57"/>
+      <joint name="right_elbow_joint" value="1.57"/>
+      <joint name="right_wrist_1_joint" value="-1.57"/>
+      <joint name="right_wrist_2_joint" value="-1.57"/>
+      <joint name="right_wrist_3_joint" value="0"/>
+    </group_state>
+    <group_state name="observe" group="both_arms">
+      <joint name="left_shoulder_pan_joint" value="3.14159"/>
+      <joint name="left_shoulder_lift_joint" value="-1.57"/>
+      <joint name="left_elbow_joint" value="1.57"/>
+      <joint name="left_wrist_1_joint" value="-1.57"/>
+      <joint name="left_wrist_2_joint" value="-1.57"/>
+      <joint name="left_wrist_3_joint" value="0"/>
+      <joint name="right_shoulder_pan_joint" value="3.14159"/>
+      <joint name="right_shoulder_lift_joint" value="-1.57"/>
+      <joint name="right_elbow_joint" value="1.57"/>
+      <joint name="right_wrist_1_joint" value="-1.57"/>
+      <joint name="right_wrist_2_joint" value="-1.57"/>
+      <joint name="right_wrist_3_joint" value="0"/>
+    </group_state>
+    <!-- Bases on the same table, ~1.3 m apart -->
+    <disable_collisions link1="left_base_link_inertia" link2="right_base_link_inertia" reason="Never"/>
+  </xacro:if>
+
+  <!-- Overhead camera mount: rigidly fixed parts that touch each other by design.
+       Arm links are still checked against the mount. -->
+  <xacro:arg name="camera" default="true"/>
+  <xacro:if value="$(arg camera)">
+    <disable_collisions link1="camera_post" link2="camera_boom" reason="Adjacent"/>
+    <disable_collisions link1="camera_boom" link2="camera_link" reason="Adjacent"/>
+    <disable_collisions link1="camera_post" link2="camera_link" reason="Never"/>
+    <disable_collisions link1="camera_post" link2="table" reason="Never"/>
+    <disable_collisions link1="camera_boom" link2="table" reason="Never"/>
+    <disable_collisions link1="camera_link" link2="table" reason="Never"/>
+  </xacro:if>
+</robot>

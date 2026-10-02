@@ -1,0 +1,92 @@
+[
+  {
+    "brick": "b02",
+    "ok": false,
+    "reason": "no pose"
+  },
+  {
+    "brick": "b04",
+    "ok": false,
+    "reason": "no pose"
+  },
+  {
+    "brick": "b00",
+    "ok": false,
+    "reason": "no pose"
+  },
+  {
+    "brick": "b03",
+    "ok": false,
+    "reason": "no pose"
+  },
+  {
+    "brick": "b12",
+    "ok": false,
+    "reason": "no pose"
+  },
+  {
+    "brick": "b13",
+    "ok": false,
+    "reason": "no pose"
+  },
+  {
+    "brick": "b14",
+    "ok": false,
+    "reason": "no pose"
+  },
+  {
+    "brick": "b05",
+    "ok": false,
+    "reason": "no pose"
+  },
+  {
+    "brick": "b17",
+    "ok": false,
+    "reason": "no pose"
+  },
+  {
+    "brick": "b08",
+    "ok": false,
+    "reason": "no pose"
+  },
+  {
+    "brick": "b01",
+    "ok": false,
+    "reason": "no pose"
+  },
+  {
+    "brick": "b16",
+    "ok": false,
+    "reason": "no pose"
+  },
+  {
+    "brick": "b09",
+    "ok": false,
+    "reason": "no pose"
+  },
+  {
+    "brick": "b10",
+    "ok": false,
+    "reason": "no pose"
+  },
+  {
+    "brick": "b06",
+    "ok": false,
+    "reason": "no pose"
+  },
+  {
+    "brick": "b15",
+    "ok": false,
+    "reason": "no pose"
+  },
+  {
+    "brick": "b11",
+    "ok": false,
+    "reason": "no pose"
+  },
+  {
+    "brick": "b07",
+    "ok": false,
+    "reason": "no pose"
+  }
+]

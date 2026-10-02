@@ -1,0 +1,13 @@
+RESULT {"success": false, "status": "grasp_descend_failed", "start_x": -0.25, "start_y": 0.1, "start_yaw_deg": -2.9122e-19, "t_observe_s": 4.91301, "t_pregrasp_s": 2.4337, "t_ready_s": 6.0309}
+[ros2run]: Process exited with failure 1
+[INFO] [1790908581.310190286] [planning_scene_interface_95574819972368.moveit.moveit.ros.rdf_loader]: Loaded robot model in 0.051 seconds
+[INFO] [1790908581.310358792] [planning_scene_interface_95574819972368.moveit.moveit.core.robot_model]: Loading robot model 'lego_workcell'...
+[INFO] [1790908581.310378585] [planning_scene_interface_95574819972368.moveit.moveit.core.robot_model]: No root/virtual joint specified in SRDF. Assuming fixed joint
+[WARN] [1790908581.319386872] [planning_scene_interface_95574819972368.moveit.moveit.core.robot_model]: Link left_2fg7_right_finger_base_link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.
+[WARN] [1790908581.319449539] [planning_scene_interface_95574819972368.moveit.moveit.core.robot_model]: Link left_2fg7_left_finger_base_link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.
+[WARN] [1790908581.327445859] [planning_scene_interface_95574819972368.moveit.moveit.core.robot_model]: Link right_2fg7_right_finger_base_link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.
+[WARN] [1790908581.327493862] [planning_scene_interface_95574819972368.moveit.moveit.core.robot_model]: Link right_2fg7_left_finger_base_link has visual geometry but no collision geometry. Collision geometry will be left empty. Fix your URDF file by explicitly specifying collision geometry.
+[WARN] [1790908581.334409346] [planning_scene_interface_95574819972368.moveit.moveit.ros.robot_model_loader]: No kinematics plugins defined. Fill and load kinematics.yaml!
+[INFO] [1790908581.344865636] [planning_scene_interface_95574819972368.moveit.moveit.ros.move_group_interface]: Ready to take commands for planning group left_arm.
+[ERROR] [1790908594.696202450] [pick_place_once]: Cartesian path only 90.2% complete
+[ERROR] [1790908595.296701393] [pick_place_once]: Pick-place failed: grasp_descend_failed

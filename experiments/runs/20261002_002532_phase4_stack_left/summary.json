@@ -1,0 +1,11 @@
+{
+  "trials": 10,
+  "stacks_complete": 10,
+  "bricks_seated": 20,
+  "bricks_attempted": 20,
+  "seated_xy_error_mm": {
+    "mean": 0.004442461491920474,
+    "max": 0.007810249675896697
+  },
+  "wall_time_s_mean": 72.54691367149353
+}
